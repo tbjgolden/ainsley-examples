@@ -1,0 +1,23 @@
+diff --git a/node_modules/react-scripts/config/webpack.config.js b/node_modules/react-scripts/config/webpack.config.js
+index 25840d9..82b2d02 100644
+--- a/node_modules/react-scripts/config/webpack.config.js
++++ b/node_modules/react-scripts/config/webpack.config.js
+@@ -535,6 +535,18 @@ module.exports = function(webpackEnv) {
+                 'sass-loader'
+               ),
+             },
++            // Adds support for ainsley files
++            {
++              test: /\.ainsley$/,
++              loader: require.resolve('ainsley-loader'),
++              options: {
++                generate: {
++                  addValueToSelector: (selector, valueAbbreviation) => `${selector}-${valueAbbreviation}`,
++                  addPropertyToSelector: (selector, propertyAbbreviation) => `${selector}-${propertyAbbreviation}`,
++                  addVariationToSelector: (selector, variationAbbreviation) => `${variationAbbreviation}_${selector}`
++                }
++              }
++            },
+             // "file" loader makes sure those assets get served by WebpackDevServer.
+             // When you `import` an asset, you get its (virtual) filename.
+             // In production, they would get copied to the `build` folder.
